@@ -26,7 +26,7 @@ En lançant un rayon depuis un pixel de la caméra, on va suivre le chemin de ce
 
 ## Ombres portées
 
-La première fonctionnalité implémenté a été les ombres portées.Pour obtenir un rendu réaliste, nous avons mis en place différents algorithmes. 
+La première fonctionnalité implémenté a été les ombres portées. Pour obtenir un rendu réaliste, nous avons mis en place différents algorithmes. 
 
 
 
@@ -82,23 +82,23 @@ Sur l'image ci-dessus est illustré l'effet de l'anti-aliasing. En faisant un zo
 
 ## Les maillages
 
-Nous souhaitons désormais inclure un objet plus complexe que de simples sphères. Ces objets sont représentés par des maillages, c'est à dire un très grand nombre de triangles dessinent la surface extérieur de l'objet. 
+Nous souhaitons désormais inclure un objet plus complexe que de simples sphères. Ces objets sont représentés par des maillages, c'est-à-dire un très grand nombre de triangles dessinant la surface extérieur de l'objet. 
 
 Le nombre de triangles d'un maillage étant très élevé, il est extrêmement couteux de représenté un objet. En effet, pour chaque rayon lancé, il est nécessaire de tester chacun des triangles du maillages pour vérifier s'il intersecte ou non le rayon.
 
-Afin de limiter le temps de calcul, on s'appuie sur le fait qu'il n'est pas nécessaire de tester tous les triangles du maillage le rayon n'a aucune chance de les intersecter. On construit alors un arbre récursif de boites englobantes de telle manière que la première boite englobe tout le maillage et que chacun de ces 2 enfants englobe la moitié du maillage du parent.
+Afin de limiter le temps de calcul, on s'appuie sur le fait qu'il n'est pas nécessaire de tester tous les triangles du maillage lorsque le rayon n'a aucune chance de les intersecter. On construit alors un arbre récursif de boites englobantes de telle manière que la première boite englobe tout le maillage et que chacun de ces 2 enfants englobe la moitié du maillage du parent (voir figure ci-dessous).
 
 ![Schéma des boites englobantes](img/bvh.png)
 
-Cette méthode permet de diviser plus de 9 le temps de calcul. (test réalisé avec une seule boite englobante contre un arbre de boites englobantes)
+Cette méthode permet de diviser le temps de calcul par plus de 9 (test réalisé avec une seule boite englobante contre un arbre de boites englobantes).
 
-L'image ainsi générée est la suivante
+L'image ainsi générée est la suivante :
 
 ![Image générée grâce au BVH](img/scene_sharp_edges.png)
 
-Le modèle apparait bien. Cependant le maillage étant une représentation discrète, on constate que l'on peut observer à l'œil nu des arrêtes très marquées entre 2 triangle (notamment au niveau des jambes).
+Le modèle apparait bien. Cependant le maillage étant une représentation discrète, on constate que l'on peut observer à l'œil nu des arrêtes très marquées et non des courbes (notamment au niveau des jambes).
 
-Pour remédier à cela le modèle inclus des normales apparentes. Il s'agit de la normale selon laquelle la lumière devrait être reflétée si elle arrivait en ce point. Ainsi un rayon intersectant un triangle en un point donné sera réfléchi non pas symétriquement par rapport à la normale mais symétriquement par rapport à la normale apparente en ce point. Cette normale apparente est obtenu par le calcul du barycentre des normales fournies par le modèle aux sommets en ce point. Ainsi si l'on appelle A, B et C les 3 sommets du triangles et $\alpha$, $\beta$, et $\gamma$ les coordonnées barycentrique du point d'intersection P, on a $N_{apparente P} = \alpha N_{apparente A} + \beta N_{apparente B} + \gamma N_{apparente C}​$ comme indiqué sur le schéma ci-dessous.
+Pour remédier à cela le modèle inclus des normales apparentes. Il s'agit de la normale selon laquelle la lumière devrait être reflétée si elle arrivait en ce point. Ainsi un rayon intersectant un triangle en un point donné sera réfléchi non pas symétriquement par rapport à la normale à la surface mais symétriquement par rapport à la normale apparente en ce point. Cette normale apparente est obtenu par le calcul du barycentre des normales fournies par le modèle aux sommets en ce point. Ainsi si l'on appelle A, B et C les 3 sommets du triangles et $\alpha$, $\beta$, et $\gamma$ les coordonnées barycentrique du point d'intersection P, on a $N_{apparente P} = \alpha N_{apparente A} + \beta N_{apparente B} + \gamma N_{apparente C}$ comme indiqué sur le schéma ci-dessous.
 
 ![Normales apparentes](img/normales_apparentes.png)
 
@@ -120,4 +120,4 @@ Le résultat très haute définition final obtenu est le suivant :
 
 ![Résultat final](img/image_high_res.png)
 
-Il s'agit d'une image 1024x1024 pour laquelle 500 rayons par pixel ont été lancé, cet image à environ pris 5h30 a être générée. Cet image a été très lente à créer car mon processeur est très lent et ne dépasse que très difficilement 1.8GHz, sur un ordinateur plus performant, avec notamment une carte graphique, on aurait pu très largement diminuer ce temps d'exécution.
+Il s'agit d'une image 1024x1024 pour laquelle 500 rayons par pixel ont été lancés, cet image à environ pris 5h30 a être générée. Cet image a été très lente à créer car mon processeur est très lent et ne dépasse que très difficilement 1.8GHz, sur un ordinateur plus performant, avec notamment une carte graphique, on aurait pu très largement diminuer ce temps d'exécution.
