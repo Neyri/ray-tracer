@@ -1,3 +1,5 @@
+**Martin CHAUVIN - MOS Informatique Graphique - Ecole Centrale Lyon**
+
 # Ray Tracer 
 
 Nous avons réalisé un ray tracer. Il s'agit d'une application visant à représenter une scène 3D en étant le plus fidèle à la réalité. Cette méthode est notamment utilisé au cinéma car, bien qu'étant plus couteuse (en temps de calcul), elle offre une meilleure fidélité des interactions lumières-matières.
@@ -8,7 +10,7 @@ Dans ce rapport, nous allons présenter un panel des méthodes utilisées lors d
 
 La scène que nous allons représenter est la suivante :
 
-![scene](C:/Users/Martin/OneDrive/Centrale%20Lyon/3A/MOS%20-%20Informatique%20graphique/rendu/img/modele.png)
+![scene](img/modele.png)
 
 Il s'agit de 6 sphères géantes créant une pièce dans laquelle se trouve une sphère *miroir*, une sphère transparente et une femme, le tout éclairé par une lumière blanche.
 
@@ -42,7 +44,7 @@ Cela a pour conséquence d'adoucir l'ombre car la zone dans l'ombre est égaleme
 
 Finalement, afin de ne plus avoir des ombres aussi marquées, on va considérer la lumière, jusqu'alors ponctuelle, comme une sphère. On obtient alors le résultat présenté ci-dessous :
 
-![ombres portées](img/ombres.png)
+![ombres portees](img/ombres.png)
 
 Les ombres y sont douces et plus sombres proche de l'objet.
 
@@ -60,7 +62,7 @@ Un objet est flou s'il n'est pas dans le plan focal. Dans le cas d'un ray tracer
 
 Le résultat ainsi obtenu est le suivant :
 
-![Flou de profondeur dans notre scène](img/flou.png)
+![Flou de profondeur dans notre scene](img/flou.png)
 
 La sphère spéculaire est dans le plan focal et apparait bien nette alors que la sphère au fond n'y est pas et est plus floue.
 
@@ -68,11 +70,11 @@ La sphère spéculaire est dans le plan focal et apparait bien nette alors que l
 
 Toujours dans l'objectif d'améliorer le réalisme, on constate que nos images sont pixelisées, comme sur l'image ci-dessous :
 
-![Image pixelisé](img/aliasing.png)
+![Image pixelise](img/aliasing.png)
 
 Les bords des sphères apparaissent crénelés. Pour remédier à cela, on pratique l'anti-aliasing, il s'agit d'une méthode visant à envoyer des rayons depuis un pixel dans de multiple directions afin de flouter l'image au niveau de ces créneaux.
 
-![Démonstration de l'efficacité de l'anti aliasing](img/antialiasing.png)
+![Demonstration de l'efficacite de l'anti aliasing](img/antialiasing.png)
 
 Sur l'image ci-dessus est illustré l'effet de l'anti-aliasing. En faisant un zoom sur la sphère spéculaire, on remarque que sans anti-aliasing, les sphères reflétées sont crénelées, on a l'impression de pixellisation. Tandis qu'avec la correction par anti-aliasing, les bords apparaissent plus doux à l'œil.
 
@@ -88,7 +90,7 @@ Afin de limiter le temps de calcul, on s'appuie sur le fait qu'il n'est pas néc
 
 ![Schéma des boites englobantes](img/bvh.png)
 
-Cette méthode permet de réduire de **XX%** le temps de calcul. (cf cours 5)
+Cette méthode permet de diviser plus de 9 le temps de calcul. (test réalisé avec une seule boite englobante contre un arbre de boites englobantes)
 
 L'image ainsi générée est la suivante
 
@@ -96,7 +98,7 @@ L'image ainsi générée est la suivante
 
 Le modèle apparait bien. Cependant le maillage étant une représentation discrète, on constate que l'on peut observer à l'œil nu des arrêtes très marquées entre 2 triangle (notamment au niveau des jambes).
 
-Pour remédier à cela le modèle inclus des normales apparentes. Il s'agit de la normale selon laquelle la lumière devrait être reflétée si elle arrivait en ce point. Ainsi un rayon intersectant un triangle en un point donné sera réfléchi non pas symétriquement par rapport à la normale mais symétriquement par rapport à la normale apparente en ce point. Cette normale apparente est obtenu par le calcul du barycentre des normales fournies par le modèle aux sommets en ce point. Ainsi si l'on appelle A, B et C les 3 sommets du triangles et $\alpha$, $\beta$, et $\gamma$ les coordonnées barycentrique du point d'intersection P, on a $N_{apparente P} = \alpha N_{apparente A} + \beta N_{apparente B} + \gamma N_{apparente C}$ comme indiqué sur le schéma ci-dessous.
+Pour remédier à cela le modèle inclus des normales apparentes. Il s'agit de la normale selon laquelle la lumière devrait être reflétée si elle arrivait en ce point. Ainsi un rayon intersectant un triangle en un point donné sera réfléchi non pas symétriquement par rapport à la normale mais symétriquement par rapport à la normale apparente en ce point. Cette normale apparente est obtenu par le calcul du barycentre des normales fournies par le modèle aux sommets en ce point. Ainsi si l'on appelle A, B et C les 3 sommets du triangles et $\alpha$, $\beta$, et $\gamma$ les coordonnées barycentrique du point d'intersection P, on a $N_{apparente P} = \alpha N_{apparente A} + \beta N_{apparente B} + \gamma N_{apparente C}​$ comme indiqué sur le schéma ci-dessous.
 
 ![Normales apparentes](img/normales_apparentes.png)
 
