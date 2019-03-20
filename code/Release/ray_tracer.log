@@ -1,0 +1,42 @@
+﻿  main.cpp
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(279): warning C4101: 'matfile' : variable locale non référencée
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(519): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(545): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(568): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(569): warning C4244: 'initialisation' : conversion de 'double' en 'int', perte possible de données
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(536): warning C4101: 'debut' : variable locale non référencée
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(536): warning C4101: 'fin' : variable locale non référencée
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(653): warning C4018: '<' : incompatibilité signed/unsigned
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(905): warning C4244: '=' : conversion de 'const _Ty' en '_Ty', perte possible de données
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              _Ty=unsigned char
+          ]
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(906): warning C4244: '=' : conversion de 'const _Ty' en '_Ty', perte possible de données
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              _Ty=unsigned char
+          ]
+c:\users\martin\onedrive\centrale lyon\3a\mos - informatique graphique\rendu\code\main.cpp(907): warning C4244: '=' : conversion de 'const _Ty' en '_Ty', perte possible de données
+          with
+          [
+              _Ty=double
+          ]
+          and
+          [
+              _Ty=unsigned char
+          ]
+  Génération de code en cours
+  202 of 793 functions (25.5%) were compiled, the rest were copied from previous compilation.
+    194 functions were new in current compilation
+    48 functions had inline decision re-evaluated but remain unchanged
+  Fin de la génération du code
+  ray_tracer.vcxproj -> C:\Users\Martin\OneDrive\Centrale Lyon\3A\MOS - Informatique graphique\rendu\code\Release\ray_tracer.exe
